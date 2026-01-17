@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillCraft Technology</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #2d3142;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Menu - Fixed Position */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(45, 49, 66, 0.95);
+            padding: 15px 50px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #5dd9c1;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled .logo {
+            color: #4ecdc4;
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links li a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #5dd9c1;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links li a:hover {
+            color: #5dd9c1;
+            background: rgba(93, 217, 193, 0.1);
+        }
+
+        .nav-links li a:hover::before {
+            width: 80%;
+        }
+
+        nav.scrolled .nav-links li a {
+            color: #e8e8e8;
+        }
+
+        nav.scrolled .nav-links li a:hover {
+            color: #5dd9c1;
+            background: rgba(93, 217, 193, 0.15);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #5dd9c1;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: #5dd9c1;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: #4a90e2;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .task-badge {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 3px solid #e74c3c;
+            color: #fff;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .hero-description {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        .hero-description h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #5dd9c1;
+        }
+
+        .hero-description p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #e8e8e8;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 100px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-content {
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        .section-content h2 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            color: #5dd9c1;
+        }
+
+        .section-content p {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #e8e8e8;
+        }
+
+        #about {
+            background: #363a4f;
+        }
+
+        #services {
+            background: #2d3142;
+        }
+
+        #contact {
+            background: #363a4f;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #1a1d2e;
+            color: #5dd9c1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: rgba(45, 49, 66, 0.98);
+                width: 100%;
+                padding: 40px;
+                gap: 20px;
+                transition: all 0.4s ease;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .hero-text h1 {
+                font-size: 42px;
+            }
+
+            .task-badge {
+                font-size: 32px;
+                padding: 10px 30px;
+            }
+
+            .hero-description h2 {
+                font-size: 28px;
+            }
+
+            nav {
+                padding: 20px 30px;
+            }
+
+            nav.scrolled {
+                padding: 15px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Navigation Menu -->
+    <nav id="navbar">
+        <div class="logo">SkillCraft Technology</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="task-badge">TASK 01</div>
+                <h1>RESPONSIVE<br>LANDING PAGE</h1>
+            </div>
+            <div class="hero-description">
+                <h2>Interactive Navigation</h2>
+                <p>Create an interactive navigation menu that changes color or style when scrolled or when hovering over a menu item.</p>
+                <p>The navigation menu should have a fixed position and be visible on all pages.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-content">
+            <h2>About Us</h2>
+            <p>SkillCraft Technology is dedicated to building innovative web solutions with cutting-edge design and functionality. We specialize in creating responsive, interactive experiences that engage users and deliver results.</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="section-content">
+            <h2>Our Services</h2>
+            <p>We offer comprehensive web development services including responsive design, interactive UI/UX, custom web applications, and performance optimization. Our team ensures your digital presence stands out in today's competitive landscape.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-content">
+            <h2>Get In Touch</h2>
+            <p>Ready to start your next project? Contact us today and let's create something amazing together. We're here to turn your vision into reality with innovative technology solutions.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 SkillCraft Technology. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        const navbar = document.getElementById('navbar');
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
