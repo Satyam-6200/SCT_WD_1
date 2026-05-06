@@ -1,5 +1,5 @@
 # landing_page
-# Responsive Landing Page with Interactive Navigation
+# Responsive Landing Page with Interactive Navigations
 
 A modern, fully responsive landing page featuring an interactive navigation menu that changes style on scroll and hover events.
 
@@ -130,7 +130,7 @@ Contributions, issues, and feature requests are welcome!
 
 ## 📝 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source.
 
 ## 👨‍💻 Author
 
