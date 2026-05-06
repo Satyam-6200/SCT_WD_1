@@ -1,4 +1,4 @@
-# SCT_WD_1
+# landing_page
 # Responsive Landing Page with Interactive Navigation
 
 A modern, fully responsive landing page featuring an interactive navigation menu that changes style on scroll and hover events.
