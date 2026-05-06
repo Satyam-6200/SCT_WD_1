@@ -1,5 +1,5 @@
 # landing_page
-# Responsive Landing Page with Interactive Navigation
+# Responsive Landing Page with Interactive Navigations
 
 A modern, fully responsive landing page featuring an interactive navigation menu that changes style on scroll and hover events.
 
